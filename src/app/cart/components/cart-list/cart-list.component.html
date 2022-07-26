@@ -1,1 +1,6 @@
-<p>cart-list works!</p>
+<div class="cart__list">
+  <h2 class="cart__list-title">Cart List</h2>
+  <div class="cart__list_container">
+      <app-cart *ngFor="let cart of carts; trackBy: onTrackCart" [cart] = 'cart'></app-cart>
+  </div>
+</div>

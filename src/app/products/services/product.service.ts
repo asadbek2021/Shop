@@ -1,37 +1,69 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../models/product';
+
+import { Category } from 'src/app/enums/category';
+import { IProduct } from '../models/product';
+
+const products = [
+  {
+    id:'prod1',
+    name: 'Horizon: Forbidden West',
+    description: 'desc',
+    isAvailable: true,
+    category: Category.Action,
+    price:100
+  },
+  {
+    id:'prod2',
+    name: 'Red Dead Redemption 2',
+    description: 'desc',
+    isAvailable: false,
+    category: Category.Puzzle,
+    price:200
+  },
+  {
+    id:'prod3',
+    name: 'The Witcher 3 Wild Hunt',
+    description: 'desc',
+    isAvailable: true,
+    category: Category.RPG,
+    price:300
+  },
+  {
+    id:'prod4',
+    name: 'God of War',
+    description: 'desc',
+    isAvailable: true,
+    category: Category.RPG,
+    price:700
+  },
+  {
+    id:'prod5',
+    name: 'Doom Eternal',
+    description: 'desc',
+    isAvailable: true,
+    category: Category.RPG,
+    price:500
+  },
+  {
+    id:'prod6',
+    name: 'Control',
+    description: 'desc',
+    isAvailable: true,
+    category: Category.RPG,
+    price:400
+  },
+];
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-
+  private products = products;
   constructor() { }
 
 
-  getProducts(): Product[] {
-    return [
-      {
-        id:'prod1',
-        name: 'Product1',
-        description: 'desc',
-        isAvailable: true,
-        price:100
-      },
-      {
-        id:'prod2',
-        name: 'Product2',
-        description: 'desc',
-        isAvailable: false,
-        price:200
-      },
-      {
-        id:'prod3',
-        name: 'Product3',
-        description: 'desc',
-        isAvailable: true,
-        price:300
-      },
-    ]
+  getProducts(): IProduct[] {
+    return this.products.slice();
   }
 }
