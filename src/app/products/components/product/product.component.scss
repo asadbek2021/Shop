@@ -1,4 +1,19 @@
 .product {
   width: 100px;
   border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: aqua;
+  color: coral;
+    &__buy{
+      border: none;
+      padding: 8px 25px;
+      background: purple;
+      cursor: pointer;
+      color: white;
+      border-radius: 5px;
+      margin: auto;
+    }
 }
