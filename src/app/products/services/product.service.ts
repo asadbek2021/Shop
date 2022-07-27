@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Category } from 'src/app/enums/category';
 import { IProduct } from '../models/product';
 
-const products = [
+const products: IProduct[] = [
   {
     id:'prod1',
     name: 'Horizon: Forbidden West',
@@ -64,6 +64,7 @@ export class ProductService {
 
 
   getProducts(): IProduct[] {
+    // в чем необходимость возвращать копию?
     return this.products.slice();
   }
 }
