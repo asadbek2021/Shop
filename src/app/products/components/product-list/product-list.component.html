@@ -1,0 +1,4 @@
+<h2 class="products_list-title">Game Store</h2>
+<div class="products_list">
+  <app-product *ngFor="let product of products, let i = index; trackBy:onTrackProduct" [product] = 'product' ></app-product>
+</div>
