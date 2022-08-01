@@ -15,7 +15,7 @@ import { ProductComponent } from './components/product/product.component';
   ],
   exports: [
     ProductListComponent,
-    ProductComponent
+    // ProductComponent
   ]
 })
 export class ProductsModule { }
