@@ -1,7 +1,7 @@
 <div class="cart__list">
   <h2 class="cart__list-title">Cart List</h2>
   <div class="cart__list_container" *ngIf="carts.length !== 0; else emptyCart">
-      <app-cart-item
+      <app-cart-item appHighlight
         *ngFor="let cart of carts; trackBy: onTrackCart" [cart] = 'cart'
         (quantityIncrease)="onQuantityIncrease($event)"
         (quantityDecrease)="onQuantityDecrease($event)"
