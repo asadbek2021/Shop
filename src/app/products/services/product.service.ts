@@ -40,7 +40,7 @@ const products = [
     id:'prod5',
     name: 'Doom Eternal',
     description: 'desc',
-    isAvailable: true,
+    isAvailable: false,
     category: Category.RPG,
     price:500
   },
