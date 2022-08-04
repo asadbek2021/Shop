@@ -81,6 +81,8 @@ export class CartService {
     this.carts[index].quantity = quantity;
   }
 
+  // в методах выше происходит мутация массива, а тут пересоздание ссылки на новый массив
+  // старайтесь придерживаться одной стратегии работы с данными
   removeCart(cartId: string){
     let carts = this.carts.filter(c => c.id !== cartId);
     this.carts = carts;
