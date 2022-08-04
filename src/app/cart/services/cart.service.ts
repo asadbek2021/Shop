@@ -72,7 +72,10 @@ export class CartService {
       this.removeCart(cartId);
       return;
     }
-    this.carts[index].quantity --;
+
+    let quantity = this.carts[index].quantity;
+    quantity--;
+    this.carts[index].quantity = quantity;
   }
 
   removeCart(cartId: string){
