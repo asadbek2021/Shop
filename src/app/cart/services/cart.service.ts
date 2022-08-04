@@ -46,7 +46,12 @@ export class CartService {
   }
 
   addCart(product: IProduct){
-    let cart = {
+    let cart = this.carts.find(c=> c.productId === product.id);
+    if(cart){
+      this.increaseCart(cart.id)
+      return;
+    }
+     cart = {
       productId: product.id,
       productName: product.name,
       quantity: 1,
@@ -58,12 +63,10 @@ export class CartService {
   }
 
   increaseCart(cartId: string){
-    let cart = this.carts.find(c=> c.id === cartId);
-    if(cart){
-      let index = this.carts.findIndex(c => c.id === cartId);
-      cart.quantity = cart.quantity + 1;
-      this.carts[index] = cart;
-    }
+    let cart = this.carts.find(c=> c.id === cartId) as ICart;
+    let index = this.carts.findIndex(c => c.id === cartId);
+    cart.quantity = cart.quantity + 1;
+    this.carts[index] = cart;
   }
 
   decreaseCart(cartId: string){
