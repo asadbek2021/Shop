@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterViewChecked, AfterViewInit, Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { AfterContentChecked, Component, OnInit } from '@angular/core';
 
 import { CartService } from '../../services/cart.service';
 import { ICart } from '../../model/cart';
@@ -16,13 +16,15 @@ export class CartListComponent implements OnInit, AfterContentChecked {
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
-    this.carts = this.cartService.getCarts();
+    this.carts = this.cartService.getProducts();
     this.totalCost = this.cartService.totalCost;
     this.totalQuantity = this.cartService.totalQuantity;
   }
 
   ngAfterContentChecked(): void {
-    this.carts = this.cartService.getCarts();
+    this.carts = this.cartService.getProducts();
+    this.totalCost = this.cartService.totalCost;
+    this.totalQuantity = this.cartService.totalQuantity;
   }
 
   onTrackCart(index: number, cart: ICart): string{
@@ -30,15 +32,15 @@ export class CartListComponent implements OnInit, AfterContentChecked {
   }
 
   onQuantityIncrease (cartId: string){
-    this.cartService.increaseCart(cartId);
+    this.cartService.increaseQuantity(cartId);
   }
 
   onQuantityDecrease (cartId: string){
-    this.cartService.decreaseCart(cartId);
+    this.cartService.decreaseQuantity(cartId);
   }
 
   onDeleteItem (cartId: string){
-    this.cartService.removeCart(cartId);
+    this.cartService.removeProduct(cartId);
   }
 
 
