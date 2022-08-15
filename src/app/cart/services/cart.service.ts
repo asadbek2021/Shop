@@ -7,82 +7,80 @@ import { ICart } from '../model/cart';
   providedIn: 'root'
 })
 export class CartService {
-  private carts: ICart[] = [
-    {
-      id: 'cart0',
-      productId: 'prod1',
-      productName: 'Fake Cart',
-      quantity: 1,
-      price: 300
-    },
-    {
-      id: 'cart1',
-      productId: 'prod4',
-      productName: 'Fake Cart',
-      quantity: 4,
-      price: 300
-    },
-    {
-      id: 'cart2',
-      productId: 'prod2',
-      productName: 'Fake Cart',
-      quantity: 3,
-      price: 300
-    },
-  ]
+  private cartProducts: ICart[] = [];
 
   constructor() { }
 
-  getCarts(): ICart[]{
-    return this.carts.slice()
+  getProducts(): ICart[]{
+    return this.cartProducts.slice()
   }
 
   get totalCost():number {
-    return 0;
+    return this.cartProducts.reduce((total, current)=> total + (current.price * current.quantity), 0);
+  }
+
+  get isEmptyCart():boolean {
+    return !!this.cartProducts.length;
   }
 
   get totalQuantity():number {
-    return 0;
+    return this.cartProducts.reduce((total, current)=> total + current.quantity, 0);
   }
 
-  addCart(product: IProduct){
-    let cart = this.carts.find(c=> c.productId === product.id);
+  addProduct(product: IProduct){
+    let cart = this.cartProducts.find(c=> c.productId === product.id);
     if(cart){
-      this.increaseCart(cart.id)
+      this.increaseQuantity(cart.id)
       return;
     }
      cart = {
       productId: product.id,
       productName: product.name,
       quantity: 1,
-      id: `cart${this.carts.length}`,
+      id: `cart${this.cartProducts.length}`,
       price: product.price
     }
 
-    this.carts.push(cart);
+    this.cartProducts.push(cart);
   }
 
-  increaseCart(cartId: string){
-    let cart = this.carts.find(c=> c.id === cartId) as ICart;
-    let index = this.carts.findIndex(c => c.id === cartId);
+  changeQuantity(product: IProduct, quantity: number){
+    const index = this.cartProducts.findIndex(c => c.productId === product.id);
+    const cart: ICart = {
+      productId: product.id,
+      productName: product.name,
+      quantity,
+      id: `cart${this.cartProducts.length}`,
+      price: product.price
+    }
+    this.cartProducts[index] = cart;
+  }
+
+  increaseQuantity(cartId: string){
+    let cart = this.cartProducts.find(c=> c.id === cartId) as ICart;
+    let index = this.cartProducts.findIndex(c => c.id === cartId);
     cart.quantity = cart.quantity + 1;
-    this.carts[index] = cart;
+    this.cartProducts[index] = cart;
   }
 
-  decreaseCart(cartId: string){
-    let index = this.carts.findIndex(c => c.id === cartId);
-    if(this.carts[index].quantity === 1) {
-      this.removeCart(cartId);
+  decreaseQuantity(cartId: string){
+    let index = this.cartProducts.findIndex(c => c.id === cartId);
+    if(this.cartProducts[index].quantity === 1) {
+      this.removeProduct(cartId);
       return;
     }
 
-    let quantity = this.carts[index].quantity;
+    let quantity = this.cartProducts[index].quantity;
     quantity--;
-    this.carts[index].quantity = quantity;
+    this.cartProducts[index].quantity = quantity;
   }
 
-  removeCart(cartId: string){
-    let carts = this.carts.filter(c => c.id !== cartId);
-    this.carts = carts;
+  removeProduct(cartId: string){
+    let carts = this.cartProducts.filter(c => c.id !== cartId);
+    this.cartProducts = carts;
+  }
+
+  removeAllProducts(){
+    this.cartProducts = [];
   }
 }
