@@ -14,7 +14,7 @@ export class ConfigOptionsService {
   }
 
   setConfig(config: IConfig){
-    this._config = {...config}
+    this._config = { ...this._config, ...config };
   }
 
   setConfigProperty(key: keyof IConfig, value: any) {
