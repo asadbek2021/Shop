@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { Category } from 'src/app/enums/category';
 import { IProduct } from '../models/product';
@@ -63,8 +64,8 @@ export class ProductService {
   constructor() { }
 
 
-  getProducts(): IProduct[] {
-    // в чем необходимость возвращать копию?
-    return this.products.slice();
+  getProducts(): Observable<IProduct[]> {
+
+    return new Observable<IProduct[]>(observer=> observer.next(this.products));
   }
 }

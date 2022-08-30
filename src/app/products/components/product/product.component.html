@@ -1,7 +1,7 @@
 <div class="product"  >
   <h3 class="product__header">{{product.name}}</h3>
   <p appBold [config]= "{'font-style':'italic', 'font-weight':'800'}" class="product__description">{{product.description}}</p>
-  <span class="product__price">{{product.price}}</span>
+  <span class="product__price">{{product.price | currency:'GBP'}}</span>
   <span class="product__availability">{{product.isAvailable}}</span>
   <button class="product__buy" (click)="onAddToCart(product)" [disabled]="!product.isAvailable" >Buy</button>
 </div>

@@ -2,14 +2,14 @@
   <h2 class="cart__list-title">Cart List</h2>
   <div class="cart__list_container" *ngIf="carts.length !== 0; else emptyCart">
       <app-cart-item appHighlight
-        *ngFor="let cart of carts; trackBy: onTrackCart" [cart] = 'cart'
+        *ngFor="let cart of carts | order: 'price':false; trackBy: onTrackCart" [cart] = 'cart'
         (quantityIncrease)="onQuantityIncrease($event)"
         (quantityDecrease)="onQuantityDecrease($event)"
         (deleteItem)="onDeleteItem($event)"
       ></app-cart-item>
   </div>
   <div class="cart__list-total">
-      <span>Total price : {{totalCost}} </span>
+      <span>Total price : {{totalCost | currency}}</span>
       <span>Quantity : {{totalQuantity}}</span>
   </div>
   <ng-template  #emptyCart >

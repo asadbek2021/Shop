@@ -2,6 +2,10 @@ import { AfterContentChecked, Component, OnInit } from '@angular/core';
 
 import { CartService } from '../../services/cart.service';
 import { ICart } from '../../model/cart';
+import { registerLocaleData } from '@angular/common';
+import localeUz from '@angular/common/locales/uz'
+
+registerLocaleData(localeUz)
 
 @Component({
   selector: 'app-cart-list',

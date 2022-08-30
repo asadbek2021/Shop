@@ -1,5 +1,5 @@
 <div class="cart">
-  <p>{{cart.productName}}</p>
+  <p>{{cart.productName | titlecase}}</p>
   <p>{{cart.quantity}}</p>
   <button class="cart__inc" (click)="onQuantityIncrease(cart.id)">+</button>
   <button class="cart__dec" [disabled]="!cart.quantity" (click)="onQuantityDecrease(cart.id)">-</button>
