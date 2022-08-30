@@ -19,10 +19,10 @@ export class OrderPipe implements PipeTransform {
       }
     }
     let deccreaseFunc = (a:{[key:string]:string},b:{[key:string]:string})=>{
-      if (a[key]>b[key]){
+      if (a[key]<b[key]){
        return 1;
       }
-      if (b[key]>a[key]){
+      if (b[key]<a[key]){
        return -1;
       }
       else{
@@ -31,5 +31,4 @@ export class OrderPipe implements PipeTransform {
     }
     return isAsc ? value.slice().sort(increaseFunc) : value.slice().sort(deccreaseFunc);
   }
-
 }

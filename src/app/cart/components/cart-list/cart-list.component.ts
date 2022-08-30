@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, OnInit, ViewChild } from '@angular/core';
 
 import { CartService } from '../../services/cart.service';
 import { ICart } from '../../model/cart';
@@ -6,6 +6,12 @@ import { registerLocaleData } from '@angular/common';
 import localeUz from '@angular/common/locales/uz'
 
 registerLocaleData(localeUz)
+
+const opts = {
+  'Product name': 'productName',
+  'Product quantity': 'quantity',
+  'Product price': 'price',
+}
 
 @Component({
   selector: 'app-cart-list',
@@ -16,6 +22,10 @@ export class CartListComponent implements OnInit, AfterContentChecked {
   carts!: ICart[];
   totalCost!: number;
   totalQuantity!: number;
+  sortOptions = opts;
+  sortDirection: boolean = true;
+
+  @ViewChild('sorter') sortByType!: HTMLSelectElement;
 
   constructor(private cartService: CartService) { }
 
@@ -24,6 +34,8 @@ export class CartListComponent implements OnInit, AfterContentChecked {
     this.totalCost = this.cartService.totalCost;
     this.totalQuantity = this.cartService.totalQuantity;
   }
+
+
 
   ngAfterContentChecked(): void {
     this.carts = this.cartService.getProducts();
@@ -45,6 +57,10 @@ export class CartListComponent implements OnInit, AfterContentChecked {
 
   onDeleteItem (cartId: string){
     this.cartService.removeProduct(cartId);
+  }
+
+  onChangeDirection(event:Event){
+   this.sortDirection = (<HTMLInputElement>event.target).value === "true";
   }
 
 

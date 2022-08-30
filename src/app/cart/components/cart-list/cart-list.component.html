@@ -1,8 +1,20 @@
 <div class="cart__list">
   <h2 class="cart__list-title">Cart List</h2>
+  <div class="cart__list-sorter">
+    <select name="sort-field"  [(ngModel)]="sortByType.value" #sortByType>
+      <option disabled selected value> Select one </option>
+      <option *ngFor="let opt of sortOptions| keyvalue" [value]="opt.value" > {{opt.key}}</option>
+    </select>
+   <fieldset id="sorDirecton">
+    <label for="asc">Ascending</label>
+    <input id="asc" type="radio" (change)="onChangeDirection($event)" value="true" checked name="sorDirecton">
+    <label for="desc">Descending</label>
+    <input id="desc" type="radio" (change)="onChangeDirection($event)" value="false" name="sorDirecton">
+   </fieldset>
+  </div>
   <div class="cart__list_container" *ngIf="carts.length !== 0; else emptyCart">
       <app-cart-item appHighlight
-        *ngFor="let cart of carts | order: 'price':false; trackBy: onTrackCart" [cart] = 'cart'
+        *ngFor="let cart of carts | order: sortByType.value:sortDirection; trackBy: onTrackCart" [cart] = 'cart'
         (quantityIncrease)="onQuantityIncrease($event)"
         (quantityDecrease)="onQuantityDecrease($event)"
         (deleteItem)="onDeleteItem($event)"
