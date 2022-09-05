@@ -65,7 +65,8 @@ export class ProductService {
 
 
   getProducts(): Observable<IProduct[]> {
-
+    // можно короче
+    // return of(this.products)
     return new Observable<IProduct[]>(observer=> observer.next(this.products));
   }
 }
