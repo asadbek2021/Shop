@@ -25,6 +25,7 @@ export class CartListComponent implements OnInit, AfterContentChecked {
   sortOptions = opts;
   sortDirection: boolean = true;
 
+  // ?
   @ViewChild('sorter') sortByType!: HTMLSelectElement;
 
   constructor(private cartService: CartService) { }
