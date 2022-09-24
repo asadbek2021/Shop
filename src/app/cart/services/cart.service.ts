@@ -37,7 +37,7 @@ export class CartService {
       productId: product.id,
       productName: product.name,
       quantity: 1,
-      id: `cart${this.cartProducts.length}`,
+      id: this.cartProducts.length,
       price: product.price
     }
 
@@ -50,20 +50,20 @@ export class CartService {
       productId: product.id,
       productName: product.name,
       quantity,
-      id: `cart${this.cartProducts.length}`,
+      id: this.cartProducts.length,
       price: product.price
     }
     this.cartProducts[index] = cart;
   }
 
-  increaseQuantity(cartId: string){
+  increaseQuantity(cartId: number){
     let cart = this.cartProducts.find(c=> c.id === cartId) as ICart;
     let index = this.cartProducts.findIndex(c => c.id === cartId);
     cart.quantity = cart.quantity + 1;
     this.cartProducts[index] = cart;
   }
 
-  decreaseQuantity(cartId: string){
+  decreaseQuantity(cartId: number){
     let index = this.cartProducts.findIndex(c => c.id === cartId);
     if(this.cartProducts[index].quantity === 1) {
       this.removeProduct(cartId);
@@ -75,7 +75,7 @@ export class CartService {
     this.cartProducts[index].quantity = quantity;
   }
 
-  removeProduct(cartId: string){
+  removeProduct(cartId: number){
     let carts = this.cartProducts.filter(c => c.id !== cartId);
     this.cartProducts = carts;
   }

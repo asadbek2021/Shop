@@ -44,19 +44,19 @@ export class CartListComponent implements OnInit, AfterContentChecked {
     this.totalQuantity = this.cartService.totalQuantity;
   }
 
-  onTrackCart(index: number, cart: ICart): string{
+  onTrackCart(index: number, cart: ICart): number{
     return cart.id
   }
 
-  onQuantityIncrease (cartId: string){
+  onQuantityIncrease (cartId: number){
     this.cartService.increaseQuantity(cartId);
   }
 
-  onQuantityDecrease (cartId: string){
+  onQuantityDecrease (cartId: number){
     this.cartService.decreaseQuantity(cartId);
   }
 
-  onDeleteItem (cartId: string){
+  onDeleteItem (cartId: number){
     this.cartService.removeProduct(cartId);
   }
 

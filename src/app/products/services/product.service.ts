@@ -6,7 +6,7 @@ import { IProduct } from '../models/product';
 
 const products: IProduct[] = [
   {
-    id:'prod1',
+    id: 1,
     name: 'Horizon: Forbidden West',
     description: 'desc',
     isAvailable: true,
@@ -14,7 +14,7 @@ const products: IProduct[] = [
     price:100
   },
   {
-    id:'prod2',
+    id: 2,
     name: 'Red Dead Redemption 2',
     description: 'desc',
     isAvailable: false,
@@ -22,7 +22,7 @@ const products: IProduct[] = [
     price:200
   },
   {
-    id:'prod3',
+    id: 3,
     name: 'The Witcher 3 Wild Hunt',
     description: 'desc',
     isAvailable: true,
@@ -30,7 +30,7 @@ const products: IProduct[] = [
     price:300
   },
   {
-    id:'prod4',
+    id: 4,
     name: 'God of War',
     description: 'desc',
     isAvailable: true,
@@ -38,7 +38,7 @@ const products: IProduct[] = [
     price:700
   },
   {
-    id:'prod5',
+    id: 5,
     name: 'Doom Eternal',
     description: 'desc',
     isAvailable: false,
@@ -46,7 +46,7 @@ const products: IProduct[] = [
     price:500
   },
   {
-    id:'prod6',
+    id: 6,
     name: 'Control',
     description: 'desc',
     isAvailable: true,
@@ -64,9 +64,14 @@ export class ProductService {
   constructor() { }
 
 
-  getProducts(): Observable<IProduct[]> {
+  getProducts(): IProduct[] {
     // можно короче
     // return of(this.products)
-    return new Observable<IProduct[]>(observer=> observer.next(this.products));
+    return this.products;
   }
+
+  getProduct(id: number | null){
+    return this.products.find(product => product.id === id);
+  }
+
 }

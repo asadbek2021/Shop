@@ -11,7 +11,7 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  products!: Observable<IProduct[]>;
+  products!: IProduct[];
   constructor(
     private productService: ProductService,
     private cartService: CartService
@@ -21,7 +21,7 @@ export class ProductListComponent implements OnInit {
     this.products = this.productService.getProducts();
   }
 
-  onTrackProduct(index: number, product: IProduct): string {
+  onTrackProduct(index: number, product: IProduct): number {
     return product.id
   }
 

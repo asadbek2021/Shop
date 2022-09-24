@@ -9,24 +9,24 @@ import { ICart } from '../../model/cart';
 })
 export class CartItemComponent implements OnInit {
   @Input('cart') cart!: ICart;
-  @Output() quantityIncrease: EventEmitter<string> = new EventEmitter();
-  @Output() quantityDecrease: EventEmitter<string> = new EventEmitter();
-  @Output() deleteItem: EventEmitter<string> = new EventEmitter();
+  @Output() quantityIncrease: EventEmitter<number> = new EventEmitter();
+  @Output() quantityDecrease: EventEmitter<number> = new EventEmitter();
+  @Output() deleteItem: EventEmitter<number> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onQuantityIncrease(cartId: string) {
+  onQuantityIncrease(cartId: number) {
     this.quantityIncrease.emit(cartId);
   }
 
-  onQuantityDecrease(productId: string){
+  onQuantityDecrease(productId: number){
     this.quantityDecrease.emit(productId);
   }
 
-  onDeleteItem(cartId: string){
+  onDeleteItem(cartId: number){
     this.deleteItem.emit(cartId);
   }
 
